@@ -1,49 +1,57 @@
-import React from 'react';
+import React, {useState } from 'react';
 
-class TodoForm extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { item: {} };
-  }
-  handleInputChange = e => {
-    this.setState({ item: {...this.state.item, [e.target.name]: e.target.value } });
+function TodoForm (props) {
+
+  let [item ,itemState] = useState({});
+  const handleInputChange = e => {
+    // const [allItem ,allItemState] = useState({});
+    // console.log('e.target.value',e.target.value);
+    // console.log('item',item);
+    // console.log('e.target.name',e.target.name);
+    // itemState([...allItem,item]);
+    //////////////\\\\\\\\\\\\\\\\\\\\
+    //to do input 
+    //its used to change the state and adding  new key(assignee) with value of (Assigned To Input) OR key difficulty with value of the scale range input
+    itemState({...item, [e.target.name]: e.target.value } );
+    /*
+    * rally good implementing
+    (copying the item object and if the kye is not there it will
+    add it with the value but if key is there just change it with the new one)    
+    */
   };
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     e.target.reset();
-    this.props.handleSubmit(this.state.item);
-    const item = {};
-    this.setState({item});
+    props.handleSubmit(item);
+    itemState({ type: 'reset' });
   };
 
-  render() {
-    return (
-      <>
-        <h3>Add Item</h3>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            <span>To Do Item</span>
-            <input
-              name="text"
-              placeholder="Add To Do List Item"
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <label>
-            <span>Difficulty Rating</span>
-            <input defaultValue="1" type="range" min="1" max="5" name="difficulty" onChange={this.handleInputChange} />
-          </label>
-          <label>
-            <span>Assigned To</span>
-            <input type="text" name="assignee" placeholder="Assigned To" onChange={this.handleInputChange} />
-          </label>
-          <button>Add Item</button>
-        </form>
-      </>
-    );
-  }
+  return (
+    <>
+      <h3>Add Item</h3>
+      <form onSubmit={handleSubmit}>
+        <label>
+          <span>To Do Item</span>
+          <input
+            name="text"
+            placeholder="Add To Do List Item"
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          <span>Difficulty Rating</span>
+          <input defaultValue="1" type="range" min="1" max="5" name="difficulty" onChange={handleInputChange} />
+        </label>
+        <label>
+          <span>Assigned To</span>
+          <input type="text" name="assignee" placeholder="Assigned To" onChange={handleInputChange} />
+        </label>
+        <button>Add Item</button>
+      </form>
+    </>
+  );
 }
 
 export default TodoForm;
