@@ -12,6 +12,8 @@ function ToDo(props) {
   and changing (the list) that inside main state 
  */
   const [list, listState] = useState([]);
+  const [done, doneState] = useState(0);
+
   const addItem = (item) => {
     item._id = uuidv4();
     item.complete = false;
@@ -44,13 +46,18 @@ function ToDo(props) {
 
     listState( list );
   },[]);
-
+  
+  useEffect(()=>{
+    // console.log(list.filter(item => !item.complete).length);
+    doneState(list.filter(item => !item.complete).length);
+  //  list.filter(item => !item.complete).length;
+  },[list]);
 
   return (
     <>
       <header>
         <h2>
-            There are {list.filter(item => !item.complete).length} Items To Complete
+            There are {done} Items To Complete
         </h2>
       </header>
 
