@@ -46,11 +46,10 @@ function ToDo(props) {
 
     listState( list );
   },[]);
-  
+  ///after every change will fire
   useEffect(()=>{
     // console.log(list.filter(item => !item.complete).length);
     doneState(list.filter(item => !item.complete).length);
-  //  list.filter(item => !item.complete).length;
   },[list]);
 
   return (
