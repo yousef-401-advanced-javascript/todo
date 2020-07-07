@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
- 
+import SiteEditor from './site';
+
+
 import useAjax from '../../hooks/useAjax';
 
 
@@ -12,18 +14,19 @@ import './todo.scss';
 
 const ToDo = () => {
 
-  const [list , _addItem , _toggleComplete , _getTodoItems] = useAjax();
+  const [list, _addItem, _toggleComplete, _getTodoItems] = useAjax();
 
 
   useEffect(_getTodoItems, []);
 
   return (
-    
+
     <>
+      <SiteEditor />
       {/* {console.log('list1',list)} */}
       <header>
         <h2>
-          There are { list.filter(item => !item.complete).length};
+          There are {list.filter(item => !item.complete).length};
           Items To Complete
         </h2>
       </header>
@@ -38,9 +41,10 @@ const ToDo = () => {
           <TodoList
             list={list}
             handleComplete={_toggleComplete}
-            // deleteHandler1={deleteHandler}
+          // deleteHandler1={deleteHandler}
           />
         </div>
+
       </section>
     </>
   );
