@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
 import SiteEditor from './site';
+import Pagination from './pagination';
+
 
 
 import useAjax from '../../hooks/useAjax';
@@ -10,20 +12,16 @@ import useAjax from '../../hooks/useAjax';
 import './todo.scss';
 
 // const todoAPI = 'https://lab3232.herokuapp.com/todo';
-
-
 const ToDo = () => {
-
-  const [list, _addItem, _toggleComplete, _getTodoItems] = useAjax();
-
-
+  const [list, _addItem, _toggleComplete, _getTodoItems, deleteHandler] = useAjax();
   useEffect(_getTodoItems, []);
 
   return (
 
     <>
-      <SiteEditor />
-      {/* {console.log('list1',list)} */}
+      <SiteEditor/>
+
+      
       <header>
         <h2>
           There are {list.filter(item => !item.complete).length};
@@ -41,8 +39,9 @@ const ToDo = () => {
           <TodoList
             list={list}
             handleComplete={_toggleComplete}
-          // deleteHandler1={deleteHandler}
+            deleteHandler1={deleteHandler}
           />
+          <Pagination list={list}/>
         </div>
 
       </section>

@@ -3,6 +3,8 @@ import { SettingsContext } from '../../context/context';
 
 export default function SettingsEditor(props){
   const context = useContext(SettingsContext);
+
+  
   return(
     <>
       <h3>completed display</h3>

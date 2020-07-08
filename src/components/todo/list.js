@@ -4,28 +4,31 @@ import { SettingsContext } from '../../context/context';
 const styles = {
   true: {
     display: 'block',
-    // color: 'ivory',
   },
   false: {
     display: 'none',
-    // color: '#525252',
   },
 };
+
 function TodoList (props) {
-  const Settings = useContext( SettingsContext );
+  const context = useContext( SettingsContext );
+
+  //these for the pagination
+  const indexOfLastItemInThePage = context.currentPage * context.itemsPerPage;
+  const indexOfFirstItemInThePage = indexOfLastItemInThePage - context.itemsPerPage;
+  const currentItemsShown = props.list.slice(indexOfFirstItemInThePage, indexOfLastItemInThePage);
   
-  // console.log('SettingsContext',SettingsContext);
   return (
     
     <ul>
-      {props.list.map(item => (
-        // console.log('item list',item),
+      {currentItemsShown.map(item => (
+        // console.log(item),
         <li 
-          className={`complete-${item.complete.toString()}`}key={item._id}  style={item.complete !==Settings.display? styles[Settings.display]:undefined}>
+          className={`complete-${item.complete.toString()}`}key={item._id}  style={item.complete !==context.display? styles[context.display]:undefined}>
 
-          <span onClick={() => props.handleComplete(item._id)}> {item.text}   </span>
+          <span onClick={() => props.handleComplete(item._id)}> {item.text}  <span> {item.assignee}   </span> </span>
 
-          {/* <button onClick={props.deleteHandler1(item._id)}>Delete</button> */}
+          <button onClick={() =>props.deleteHandler1(item._id)}>Delete</button>
 
         </li>
       ))}
