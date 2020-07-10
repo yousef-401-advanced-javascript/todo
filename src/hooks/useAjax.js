@@ -6,8 +6,11 @@ function useAjax( ){
 
   const [list, setList] = useState([]);
 
+  // const editHandler = (item)
+
   const _addItem = (item) => {
-    item.due = new Date();
+    item.due = new Date().toLocaleString();
+    // console.log(item);
     fetch(todoAPI, {
       method: 'post',
       mode: 'cors',

@@ -1,8 +1,12 @@
 import React, {useContext} from 'react';
 import { SettingsContext } from '../../context/context';
+import Pagination from 'react-bootstrap/Pagination';
+import ButtonToolbar from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
 
 
-export default function Pagination(props){
+
+export default function Pagination1(props){
   const style = {
     pagination:{
       display:'inline-block',
@@ -15,18 +19,27 @@ export default function Pagination(props){
   for (let i = 1; i <= Math.ceil(props.list.length / context.itemsPerPage); i++) {
     pageNumbers.push(i);
   }
+
+  const checkout= ()=>{
+    if(context.prev === 1 ){
+      context.setPrev(2);
+      context.setNext(3);
+    }
+  };
   return (
     <>
       <nav>
-        <ul >
+        <Pagination aria-label="Toolbar with button groups">
+       
           {pageNumbers.map(number => (
-            <li key={number} >
-              <button onClick={() => paginate(number)} style={style['pagination']}>
+            <Pagination.Item key={number}   onClick={() => paginate(number)}>
+              <Button onClick={() => paginate(number)} style={style['pagination']}>
                 {number}
-              </button>
-            </li>
+              </Button>
+            </Pagination.Item>
           ))}
-        </ul>
+       
+        </Pagination>
       </nav>
     </>
   );

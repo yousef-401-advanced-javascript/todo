@@ -1,5 +1,7 @@
-import React,{useContext} from 'react';
+import React, { useContext } from 'react';
 import { SettingsContext } from '../../context/context';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
 
 const styles = {
   true: {
@@ -10,29 +12,40 @@ const styles = {
   },
 };
 
-function TodoList (props) {
-  const context = useContext( SettingsContext );
+function TodoList(props) {
+  const context = useContext(SettingsContext);
 
   //these for the pagination
   const indexOfLastItemInThePage = context.currentPage * context.itemsPerPage;
   const indexOfFirstItemInThePage = indexOfLastItemInThePage - context.itemsPerPage;
   const currentItemsShown = props.list.slice(indexOfFirstItemInThePage, indexOfLastItemInThePage);
-  
+  //   <ListGroup>
+  //   <ListGroup.Item disabled>Cras justo odio</ListGroup.Item>
+  //   <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+  //   <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+  //   <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+  // </ListGroup>
+
   return (
-    
-    <ul>
+
+    <ListGroup>
       {currentItemsShown.map(item => (
         // console.log(item),
-        <li 
-          className={`complete-${item.complete.toString()}`}key={item._id}  style={item.complete !==context.display? styles[context.display]:undefined}>
+        <ListGroup
+          className={`complete-${item.complete.toString()}`} key={item._id} style={item.complete !== context.display ? styles[context.display] : undefined}>
 
-          <span onClick={() => props.handleComplete(item._id)}> {item.text}  <span> {item.assignee}   </span> </span>
+          <ListGroup.Item onClick={() => props.handleComplete(item._id)}>ToDo title: {item.text}
+            <ListGroup.Item> the assignee : {item.assignee}   </ListGroup.Item>
+            <ListGroup.Item> The difficulty : {item.difficulty}   </ListGroup.Item>
+            <ListGroup.Item>Added at {item.due}   </ListGroup.Item>
+          </ListGroup.Item>
+          <Button variant="primary" size="sm" onClick={() => props.deleteHandler1(item._id)}>Delete</Button>
 
-          <button onClick={() =>props.deleteHandler1(item._id)}>Delete</button>
 
-        </li>
+
+        </ListGroup>
       ))}
-    </ul>
+    </ListGroup>
   );
 }
 

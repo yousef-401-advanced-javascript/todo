@@ -1,12 +1,12 @@
-import React ,{useState, useEffect} from 'react';
+import React ,{useState} from 'react';
 import cookie from 'react-cookies';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import superagent from 'superagent';
 dotenv.config();
 
-const API = process.env.API_SERVER  || 'https://auth-server-401.herokuapp.com';
-const SECRET = process.env.JWT_SECRET ||'mysecret' || 'supersecret';
+const API = process.env.API_SERVER  || 'https://lab3232.herokuapp.com' ||'https://auth-server-401.herokuapp.com';
+const SECRET = process.env.JWT_SECRET ||'mysecret' || 'supersecret' || 'yousef';
 
 export const LoginContext = React.createContext();
 
@@ -56,10 +56,10 @@ export default function LoginProvider(props){
   function logout(){
     setLoginState(false, null, {});
   }
-//   useEffect(()=>{
-//     const token = cookie.load('auth');
-//     validateToken(token);
-//   },[]);
+  //   useEffect(()=>{
+  //     const token = cookie.load('auth');
+  //     validateToken(token);
+  //   },[]);
   return(
     <LoginContext.Provider value={state}>
       {props.children}

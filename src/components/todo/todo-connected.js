@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
 import SiteEditor from './site';
@@ -15,7 +15,7 @@ import './todo.scss';
 const ToDo = () => {
   const [list, _addItem, _toggleComplete, _getTodoItems, deleteHandler] = useAjax();
   useEffect(_getTodoItems, []);
-
+  console.log( 'list',list);
   return (
 
     <>
