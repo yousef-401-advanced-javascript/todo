@@ -1,8 +1,11 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
 import SiteEditor from './site';
 import Pagination from './pagination';
+
+
+import Auth from '../auth/';
 
 
 
@@ -15,13 +18,13 @@ import './todo.scss';
 const ToDo = () => {
   const [list, _addItem, _toggleComplete, _getTodoItems, deleteHandler] = useAjax();
   useEffect(_getTodoItems, []);
-  console.log( 'list',list);
+  console.log('list', list);
   return (
 
     <>
-      <SiteEditor/>
+      <SiteEditor />
 
-      
+
       <header>
         <h2>
           There are {list.filter(item => !item.complete).length};
@@ -31,9 +34,12 @@ const ToDo = () => {
 
       <section className="todo">
 
-        <div>
-          <TodoForm handleSubmit={_addItem} />
-        </div>
+        <Auth capability="update">
+          <div>
+            <TodoForm handleSubmit={_addItem} />
+          </div>
+        </Auth>
+
 
         <div>
           <TodoList
@@ -41,7 +47,7 @@ const ToDo = () => {
             handleComplete={_toggleComplete}
             deleteHandler1={deleteHandler}
           />
-          <Pagination list={list}/>
+          <Pagination list={list} />
         </div>
 
       </section>

@@ -1,50 +1,53 @@
-import React ,{useState, useContext} from 'react';
+import React  from 'react';
 import { LoginContext } from '../../context/auth';
 import Show from '../show/';
 
-export default function Login (props){
+class Login extends React.Component {
 
-  const context = useContext(LoginContext);
+  static contextType = LoginContext;
 
-  const [username, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+    };
+  }
 
-  function handleChangeUserName (e) {
-    setUserName({ [e.target.name]: e.target.value });
-  };
-  function handleChangePassword  (e) {
-    setPassword({ [e.target.name]: e.target.value });
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
-  };
-
-  function handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
-    context.setLogIn(username, password);
-  };
+    this.context.login(this.state.username, this.state.password);
+  }
 
-  return(
-    <>
-      <Show condition={context.loggedIn}>
-        <button onClick={context.logOut}> Log Out</button>
-      </Show>
-      <Show condition={!context.loggedIn}>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="username"
-            placeholder="Enter Username"
-            onChange={handleChangeUserName}
-          />
-          <input
-            type="text"
-            name="password"
-            placeholder="Enter Password"
-            onChange={handleChangePassword}
-          />
-          <button>Login</button>
-        </form>
-      </Show>
-    </>
-  );
+  render() {
+    return (
+      <>
+        <Show condition={this.context.loggedIn}>
+          <button onClick={this.context.logout}>Logout</button>
+        </Show>
+        <Show condition={!this.context.loggedIn}>
+          <form onSubmit={this.handleSubmit} >
+            <input
+              placeholder="userName"
+              name="username"
+              onChange={this.handleChange}
+            />
+            <input
+              placeholder="password"
+              name="password"
+              onChange={this.handleChange}
+            />
+            <button>Login</button>
+          </form>
+        </Show>
+      </>
+    );
+  }
 
 }
+
+export default Login;

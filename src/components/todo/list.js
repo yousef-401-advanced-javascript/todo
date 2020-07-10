@@ -3,6 +3,8 @@ import { SettingsContext } from '../../context/context';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 
+import Auth from '../auth/';
+
 const styles = {
   true: {
     display: 'block',
@@ -39,7 +41,10 @@ function TodoList(props) {
             <ListGroup.Item> The difficulty : {item.difficulty}   </ListGroup.Item>
             <ListGroup.Item>Added at {item.due}   </ListGroup.Item>
           </ListGroup.Item>
-          <Button variant="primary" size="sm" onClick={() => props.deleteHandler1(item._id)}>Delete</Button>
+
+          <Auth capability="delete">
+            <Button variant="primary" size="sm" onClick={() => props.deleteHandler1(item._id)}>Delete</Button>
+]         </Auth>
 
 
 

@@ -2,20 +2,29 @@ import React, {useContext} from 'react';
 import { LoginContext } from '../../context/auth';
 import Show from '../show/';
 // helper component for ACL
-function Auth (props){
-  
-  const context = useContext(LoginContext);
+class Auth extends React.Component {
 
-  let okToRender = false;
-  try {
-    okToRender =
-        context.loggedIn && props.capability
-          ? context.user.capabilities.includes(props.capability)
-          : false;
-  } catch (e) {
-    console.log('NOT AUTHORIZED', e.message);
+  static contextType = LoginContext;
+
+  render() {
+    let okToRender = false;
+
+    try {
+      okToRender = this.context.loggedIn && (
+        this.props.capability ?
+          this.context.user.capabilities.includes(this.props.capability)
+          : true
+      );
+    } catch (e) {
+      console.warn('Not Authorized!');
+    }
+
+    return (
+      <Show condition={okToRender}>
+        {this.props.children}
+      </Show>
+    );
   }
-  return <Show condition={okToRender}>{props.children}</Show>;
-  
 }
+
 export default Auth;
