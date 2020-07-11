@@ -1,6 +1,9 @@
-import React  from 'react';
+import React from 'react';
 import { LoginContext } from '../../context/auth';
 import Show from '../show/';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 
 class Login extends React.Component {
 
@@ -27,22 +30,29 @@ class Login extends React.Component {
     return (
       <>
         <Show condition={this.context.loggedIn}>
-          <button onClick={this.context.logout}>Logout</button>
+          <Button className="btn btn-primary btn-large centerButton" size="sm" type="submit" onClick={this.context.logout}>Logout</Button>
         </Show>
         <Show condition={!this.context.loggedIn}>
-          <form onSubmit={this.handleSubmit} >
-            <input
-              placeholder="userName"
-              name="username"
-              onChange={this.handleChange}
-            />
-            <input
-              placeholder="password"
-              name="password"
-              onChange={this.handleChange}
-            />
-            <button>Login</button>
-          </form>
+          <h2>Sign In</h2>
+          <Form role="form" onSubmit={this.handleSubmit} >
+            <Form.Label>
+              <span>User Name</span>
+              <Form.Control
+                placeholder="userName"
+                name="username"
+                onChange={this.handleChange}
+              />
+            </Form.Label>
+            <Form.Label>
+              <span>Password</span>
+              <Form.Control
+                placeholder="password"
+                name="password"
+                onChange={this.handleChange}
+              />
+            </Form.Label>
+            <Button size="sm" className="btn btn-primary btn-large centerButton" type="submit">Login</Button>
+          </Form>
         </Show>
       </>
     );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useForm from '../../hooks/useForm';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -7,10 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 function TodoForm(props) {
   const [handleInputChange, handleSubmit] = useForm(props);
-  // function handleForm(){
-  //   //this is from the todo-connected file 
-  //   props.handleSubmit(item);
-  // }
+
 
   return (
     <>

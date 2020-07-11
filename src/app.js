@@ -9,20 +9,6 @@ import Login from './components/login/';
 import SignUp from './components/signup/';
 
 import LoginProvider from './context/auth';
-// const EditLink = (props) => {
-//   return (
-//     <Auth capability="update">
-//       <span>Edit</span>
-//     </Auth>
-//   );
-// };
-// const DeleteLink = (props) => {
-//   return (
-//     <Auth capability="delete">
-//       <span>Delete</span>
-//     </Auth>
-//   );
-// };
 
 const App = () => {
   return (
@@ -36,6 +22,7 @@ const App = () => {
           <ToDo />
 
         </SettingsProvider>
+
       </Auth >
     </LoginProvider>
 

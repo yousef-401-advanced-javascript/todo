@@ -22,6 +22,22 @@ body, html {
     }
 
 }
+////login 
+
+form{
+
+    margin-bottom: 65px;
+    label {
+        display: block; 
+        margin-bottom: 0.5rem;
+        width: 20%;
+    }
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+        padding: 7px 119px;
+    }
+}
+///
 
 .todo {
 
@@ -29,7 +45,11 @@ body, html {
     flex-direction:row;
     justify-content: flex-start;
     margin: 2em;
-
+    div{
+        .complete-true {
+            text-decoration: line-through;
+        }
+    }
     form {
 
         display:flex;
@@ -80,16 +100,17 @@ body, html {
                  width: 300px;
              }
 
-            button {
-                background: transparent;
-                border:none;
-                color:blue;
-                cursor:pointer;
-                padding:0;
-                margin: 0 .75em;
-            }
+            // button {
+            //     background: transparent;
+            //     border:none;
+            //     color:blue;
+            //     cursor:pointer;
+            //     padding:0;
+            //     margin: 0 .75em;
+            // }
             
         }
     }
+    
 
 }
