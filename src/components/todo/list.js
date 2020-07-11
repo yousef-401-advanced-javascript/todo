@@ -34,11 +34,11 @@ function TodoList(props) {
             <ListGroup.Item > the assignee : {item.assignee}   </ListGroup.Item>
             <ListGroup.Item> The difficulty : {item.difficulty}   </ListGroup.Item>
             <ListGroup.Item>Added at {item.due}   </ListGroup.Item>
+            <Auth capability="delete">
+              <Button variant="primary" size="sm" onClick={() => props.deleteHandler1(item._id)}>Delete</Button>
+            </Auth>
           </ListGroup.Item>
 
-          <Auth capability="delete">
-            <Button variant="primary" size="sm" onClick={() => props.deleteHandler1(item._id)}>Delete</Button>
-          </Auth>
 
 
 
