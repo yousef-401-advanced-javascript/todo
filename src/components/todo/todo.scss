@@ -1,0 +1,135 @@
+@import "~bootstrap/scss/bootstrap";
+body, html {
+    height: 100%;
+    margin: 0;
+    padding:0;
+    width: 100%;
+}
+.todo-details {
+    display:flex;
+    flex-direction:column;
+
+    header {
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
+        padding:.5em 1em;
+    }
+
+    .item {
+        flex:1;
+        padding: 1em;
+    }
+
+}
+////login 
+
+form{
+
+    margin-bottom: 65px;
+    label {
+        display: block; 
+        margin-bottom: 0.5rem;
+        width: 20%;
+    }
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+        padding: 7px 119px;
+    }
+    // input.form-control {
+    //     width: 501%;
+    // }
+}
+///
+
+.todo {
+
+    // display:flex;
+    // flex-direction:row;
+    // justify-content: flex-start;
+    // margin: 2em;
+    div{
+        .list-group {
+            display: inline-block;
+            flex-direction: column;
+            padding-left: 0;
+            margin-bottom: 0;
+            border-radius: 0.25rem;
+        }
+         .list-group {
+            display: -webkit-inline-box;
+            flex-direction: column;
+            padding-left: 0;
+            margin-bottom: 0;
+            border-radius: 0.25rem;
+        }
+        .complete-true {
+            text-decoration: line-through;
+            background-color: red;
+            // color: white;
+        }
+    }
+    // form {
+
+    //     display:flex;
+    //     flex-direction:column;
+    //     margin-right: 2em;
+
+    //     label {
+    //         display: flex;
+    //         flex-direction:column;
+    //         margin-bottom: 1em;
+    //     }
+    // }
+
+    ul {
+        // list-style-type:none;
+        // margin:0;
+        // padding:0;
+
+        li {
+
+            // align-items: center;
+            // display:inline-block;
+            // flex-direction:row;
+            // font-size: .75em;
+            // margin: .75em .5em;
+
+            // &.complete-true {
+            //   span {
+            //     background: pink;
+            //     text-decoration:line-through;
+            //     &:hover {
+            //        background: seagreen;
+            //     }
+            //   }
+            // }
+
+            span {
+                background: #e0e0e0;
+                cursor:pointer;
+                &:hover {
+                    background: pink;
+                }
+            }
+            //  span, input {
+            //      border: .5px solid #eee;
+            //      display:inline-block;
+            //      padding: .2em .25em;
+            //      width: 300px;
+            //  }
+
+            // button {
+            //     background: transparent;
+            //     border:none;
+            //     color:blue;
+            //     cursor:pointer;
+            //     padding:0;
+            //     margin: 0 .75em;
+            // }
+            
+        }
+    }
+    
+
+}
